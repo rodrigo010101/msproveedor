@@ -24,7 +24,7 @@ public class ProveedorService {
         if (proveedor == null) {
             throw new IllegalArgumentException("El proveedor no puede ser NULL");
         }
-        if (proveedor.getNombrEmpresa() == null || proveedor.getNombrEmpresa().trim().isEmpty()) {
+        if (proveedor.getNombreEmpresa() == null || proveedor.getNombreEmpresa().trim().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "El nombre es obligatorio.");
         }
         try {

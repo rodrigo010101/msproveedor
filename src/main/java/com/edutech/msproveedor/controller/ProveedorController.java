@@ -60,25 +60,24 @@ public class ProveedorController {
     }
 
     @DeleteMapping("/{idproveedor}") // delete
-    public ResponseEntity<?> deleteProveedor(@PathVariable Integer idproveedor) {
+    public ResponseEntity<Proveedor> deleteProveedor(@PathVariable Integer idproveedor) {
 
         try {
             Optional<Proveedor> proveedorExist = proveedorService.findById(idproveedor);
             if (!proveedorExist.isPresent()) {
-                return new ResponseEntity<>("Proveedor con Id " + idproveedor + "no encontrado", HttpStatus.NOT_FOUND);
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND);
             }
-            Proveedor prove = proveedorExist.get();
+            // Proveedor prove = proveedorExist.get();
             proveedorService.deleteById(idproveedor);
-            return new ResponseEntity<>("El id " + prove.getIdproveedor() + "ah sido eliminado", HttpStatus.OK);
+            return new ResponseEntity<>(HttpStatus.OK);
         } catch (DataIntegrityViolationException e) {
-            return new ResponseEntity<>("Error en la integridad de los datos" + e.getMessage(), HttpStatus.CONFLICT);
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
     }
 
     @PostMapping("/{idproveedor}") // actualizar por id
     public ResponseEntity<Proveedor> updateProveedor(@PathVariable Integer idproveedor,
             @RequestBody Proveedor proveedor) {
-
         // obj
         Optional<Proveedor> prover = proveedorService.findById(idproveedor);
         if (!prover.isPresent()) {
@@ -86,7 +85,7 @@ public class ProveedorController {
         }
         try {
             Proveedor proveUpdate = prover.get();
-            proveUpdate.setNombrEmpresa(proveedor.getNombrEmpresa());
+            proveUpdate.setNombreEmpresa(proveedor.getNombreEmpresa());
             proveUpdate.setDescrProveedor(proveedor.getDescrProveedor());
             proveUpdate.setContactoProveedor(proveedor.getContactoProveedor());
             proveUpdate.setDireccionProveedor(proveedor.getDireccionProveedor());
