@@ -23,4 +23,7 @@ public interface ProveedorRepository extends JpaRepository<Proveedor, Integer> {
     Optional<Proveedor> findById(Integer idproveedor);
     // delet for id
     // Proveedor deleteBy(Integer idproveedor);
+
+    Proveedor getReferenceById(int idproveedor);
+
 }

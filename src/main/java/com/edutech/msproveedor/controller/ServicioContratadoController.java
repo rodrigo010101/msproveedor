@@ -11,10 +11,12 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.edutech.msproveedor.model.Proveedor;
 import com.edutech.msproveedor.model.ServicioContratado;
 import com.edutech.msproveedor.service.ProveedorService;
 import com.edutech.msproveedor.service.ServicioContratadoService;
@@ -26,16 +28,15 @@ public class ServicioContratadoController {
     private ServicioContratadoService servicioContratadoService;
 
     @Autowired
-    ProveedorService proveedorService;
+    private ProveedorService proveedorService;
 
     // crear
     @PostMapping
     public ResponseEntity<ServicioContratado> createServContr(@RequestBody ServicioContratado servicioContratado) {
-
         int idLink = servicioContratado.getProveedor().getIdproveedor();
-        var proveedor = proveedorService.proveedorxId(idLink);
+        Proveedor proveedor = proveedorService.proveedorxId(idLink);
 
-        if (proveedor != null) {
+        if(proveedor != null) {
             servicioContratado.setProveedor(proveedor);
         }
 
@@ -91,7 +92,7 @@ public class ServicioContratadoController {
         }
     }
 
-    @PostMapping("/{idservicio}")
+    @PutMapping("/{idservicio}")
     public ResponseEntity<ServicioContratado> updateServicioContrato(@PathVariable Integer idservicio,
             @RequestBody ServicioContratado servicioContratado) {
 

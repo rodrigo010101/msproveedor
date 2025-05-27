@@ -23,7 +23,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class ServicioContratado {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idservicio;
@@ -37,9 +36,8 @@ public class ServicioContratado {
     @Column(nullable = false)
     LocalDate fechaFinContrato;
 
-    @ManyToOne
+    @ManyToOne()
     @JoinColumn(name = "idproveedor")
     @JsonBackReference
     private Proveedor proveedor;
-
 }

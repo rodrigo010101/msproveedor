@@ -28,7 +28,7 @@ public class ProveedorController {
     @GetMapping // List
     public ResponseEntity<List<Proveedor>> listaProveedor() {
         // obj
-        List<Proveedor> listProve = proveedorService.findAll();
+        List<?> listProve = proveedorService.findAll();
         if (listProve.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }

@@ -64,4 +64,5 @@ public class ProveedorService {
     public Proveedor proveedorxId(int idproveedor) {
         return proveedorRepository.getReferenceById(idproveedor);
     }
+
 }

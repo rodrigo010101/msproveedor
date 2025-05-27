@@ -22,9 +22,9 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-// Anotaciones 
+// Anotaciones
 @Entity
-@Table(name = "servicio_contratado")
+@Table(name = "proveedor")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -32,7 +32,8 @@ import lombok.NoArgsConstructor;
 // FinAnotaciones
 
 public class Proveedor {
-
+    // @OneToMany(mappedBy = "idproveedor", cascade = CascadeType.ALL, fetch =
+    // FetchType.LAZY)
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer idproveedor;
