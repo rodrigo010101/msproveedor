@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -75,27 +76,13 @@ public class ProveedorController {
         }
     }
 
-    @PostMapping("/{idproveedor}") // actualizar por id
+    @PutMapping("/{idproveedor}") // actualizar por id HTTP put
     public ResponseEntity<Proveedor> updateProveedor(@PathVariable Integer idproveedor,
             @RequestBody Proveedor proveedor) {
-        // obj
-        Optional<Proveedor> prover = proveedorService.findById(idproveedor);
-        if (!prover.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-        }
-        try {
-            Proveedor proveUpdate = prover.get();
-            proveUpdate.setNombreEmpresa(proveedor.getNombreEmpresa());
-            proveUpdate.setDescrProveedor(proveedor.getDescrProveedor());
-            proveUpdate.setContactoProveedor(proveedor.getContactoProveedor());
-            proveUpdate.setDireccionProveedor(proveedor.getDireccionProveedor());
-            proveUpdate.setFechaRegistro(proveedor.getFechaRegistro());
-
-            proveedorService.save(proveUpdate);
-
+        if (proveedorService.update(idproveedor, proveedor)) {
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (Exception e) {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
+        } else {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }
     }
 }

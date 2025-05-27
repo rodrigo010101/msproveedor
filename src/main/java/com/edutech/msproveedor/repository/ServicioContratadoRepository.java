@@ -11,6 +11,6 @@ import com.edutech.msproveedor.model.ServicioContratado;
 public interface ServicioContratadoRepository extends JpaRepository<ServicioContratado, Integer> {
     // list,update,actualizar se crean automaticamente de jpa
 
-    Optional<ServicioContratado> findById(Integer idservicio);
+    Optional<ServicioContratado> findById(int idservicio);
 
 }

@@ -65,4 +65,17 @@ public class ProveedorService {
         return proveedorRepository.getReferenceById(idproveedor);
     }
 
+    public boolean update(int idproveedor, Proveedor proveedor) {
+
+        Proveedor pro = proveedorRepository.findById(idproveedor);
+        pro.setIdproveedor(idproveedor);
+        pro.setNombreEmpresa(proveedor.getNombreEmpresa());
+        pro.setDireccionProveedor(proveedor.getDireccionProveedor());
+        pro.setDescrProveedor(proveedor.getDescrProveedor());
+        pro.setServicios(proveedor.getServicios());
+        pro.setTipoRecurso(proveedor.getTipoRecurso());
+        proveedorRepository.save(pro);
+        return true;
+    }
+
 }
