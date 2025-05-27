@@ -38,7 +38,7 @@ public class ServicioContratadoService {
 
     // find by id
     public Optional<ServicioContratado> findById(Integer idservicio) {
-        return servicioContratadoRepository.findByID(idservicio);
+        return servicioContratadoRepository.findById(idservicio);
     }
 
     // delete by id

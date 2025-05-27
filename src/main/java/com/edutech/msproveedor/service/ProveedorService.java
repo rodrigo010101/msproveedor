@@ -61,4 +61,7 @@ public class ProveedorService {
         return proveedorRepository.findById(idproveedor);
     }
 
+    public Proveedor proveedorxId(int idproveedor) {
+        return proveedorRepository.getReferenceById(idproveedor);
+    }
 }

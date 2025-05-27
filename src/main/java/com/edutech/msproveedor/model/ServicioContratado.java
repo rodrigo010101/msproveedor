@@ -2,6 +2,8 @@ package com.edutech.msproveedor.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -21,8 +23,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 
 public class ServicioContratado {
-    @ManyToOne
-    @JoinColumn(name = "idproveedor", nullable = false)
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -36,5 +36,10 @@ public class ServicioContratado {
 
     @Column(nullable = false)
     LocalDate fechaFinContrato;
+
+    @ManyToOne
+    @JoinColumn(name = "idproveedor")
+    @JsonBackReference
+    private Proveedor proveedor;
 
 }

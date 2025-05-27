@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.edutech.msproveedor.model.ServicioContratado;
+import com.edutech.msproveedor.service.ProveedorService;
 import com.edutech.msproveedor.service.ServicioContratadoService;
 
 @RestController
@@ -24,9 +25,20 @@ public class ServicioContratadoController {
     @Autowired
     private ServicioContratadoService servicioContratadoService;
 
+    @Autowired
+    ProveedorService proveedorService;
+
     // crear
     @PostMapping
     public ResponseEntity<ServicioContratado> createServContr(@RequestBody ServicioContratado servicioContratado) {
+
+        int idLink = servicioContratado.getProveedor().getIdproveedor();
+        var proveedor = proveedorService.proveedorxId(idLink);
+
+        if (proveedor != null) {
+            servicioContratado.setProveedor(proveedor);
+        }
+
         Optional<ServicioContratado> servExist = servicioContratadoService.findById(servicioContratado.getIdservicio());
         if (servExist.isPresent()) {
             return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
