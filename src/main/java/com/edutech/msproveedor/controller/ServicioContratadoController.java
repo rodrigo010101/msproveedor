@@ -18,12 +18,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.edutech.msproveedor.model.Proveedor;
 import com.edutech.msproveedor.model.ServicioContratado;
+import com.edutech.msproveedor.repository.ProveedorRepository;
 import com.edutech.msproveedor.service.ProveedorService;
 import com.edutech.msproveedor.service.ServicioContratadoService;
 
 @RestController
 @RequestMapping("/api/v1/servicioContratado")
 public class ServicioContratadoController {
+
     @Autowired
     private ServicioContratadoService servicioContratadoService;
 
@@ -36,7 +38,7 @@ public class ServicioContratadoController {
         int idLink = servicioContratado.getProveedor().getIdproveedor();
         Proveedor proveedor = proveedorService.proveedorxId(idLink);
 
-        if(proveedor != null) {
+        if (proveedor != null) {
             servicioContratado.setProveedor(proveedor);
         }
 
