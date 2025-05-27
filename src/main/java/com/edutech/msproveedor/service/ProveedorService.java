@@ -78,4 +78,8 @@ public class ProveedorService {
         return true;
     }
 
+    public boolean exitsEmpresa(String empresa) {
+        return proveedorRepository.findByNombreEmpresa(empresa).isPresent();
+    }
+
 }

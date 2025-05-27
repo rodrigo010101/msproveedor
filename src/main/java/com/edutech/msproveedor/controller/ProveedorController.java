@@ -29,11 +29,11 @@ public class ProveedorController {
     @GetMapping // List
     public ResponseEntity<List<Proveedor>> listaProveedor() {
         // obj
-        List<?> listProve = proveedorService.findAll();
+        List<Proveedor> listProve = proveedorService.findAll();
         if (listProve.isEmpty()) {
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }
-        return new ResponseEntity<>(HttpStatus.OK);
+        return new ResponseEntity<>(listProve, HttpStatus.OK);
     }
 
     @GetMapping("/{idproveedor}") // read
@@ -50,14 +50,12 @@ public class ProveedorController {
     @PostMapping // create
     public ResponseEntity<Proveedor> createProveedor(@RequestBody Proveedor proveedor) {
         // obj para validar si esta creado el objeto
-        Optional<Proveedor> existProveedor = proveedorService.findById(proveedor.getIdproveedor());
-        if (existProveedor.isPresent()) {
-            return new ResponseEntity<>(HttpStatus.NOT_ACCEPTABLE);
-        } else {
-            // objt new si no existe
-            Proveedor newProveedor = proveedorService.save(proveedor);
-            return new ResponseEntity<>(newProveedor, HttpStatus.ACCEPTED);
+        if (proveedorService.exitsEmpresa(proveedor.getNombreEmpresa())) {
+            return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
+        Proveedor newProveedor = proveedorService.save(proveedor);
+        return new ResponseEntity<>(newProveedor, HttpStatus.CREATED);
+
     }
 
     @DeleteMapping("/{idproveedor}") // delete
