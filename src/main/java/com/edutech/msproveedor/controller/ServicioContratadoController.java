@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.edutech.msproveedor.model.Proveedor;
 import com.edutech.msproveedor.model.ServicioContratado;
-import com.edutech.msproveedor.repository.ProveedorRepository;
 import com.edutech.msproveedor.service.ProveedorService;
 import com.edutech.msproveedor.service.ServicioContratadoService;
 
