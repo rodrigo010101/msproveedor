@@ -68,7 +68,7 @@ public class ProveedorController {
             }
             // Proveedor prove = proveedorExist.get();
             proveedorService.deleteById(idproveedor);
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(proveedorExist.get(), HttpStatus.OK);
         } catch (DataIntegrityViolationException e) {
             return new ResponseEntity<>(HttpStatus.CONFLICT);
         }
@@ -78,7 +78,7 @@ public class ProveedorController {
     public ResponseEntity<Proveedor> updateProveedor(@PathVariable Integer idproveedor,
             @RequestBody Proveedor proveedor) {
         if (proveedorService.update(idproveedor, proveedor)) {
-            return new ResponseEntity<>(HttpStatus.OK);
+            return new ResponseEntity<>(proveedor, HttpStatus.OK);
         } else {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }

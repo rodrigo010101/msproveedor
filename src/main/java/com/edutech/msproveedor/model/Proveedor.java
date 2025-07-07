@@ -3,6 +3,8 @@ package com.edutech.msproveedor.model;
 import java.time.LocalDate;
 import java.util.List;
 
+import org.springframework.boot.autoconfigure.domain.EntityScan;
+
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import jakarta.persistence.CascadeType;
@@ -24,7 +26,7 @@ import lombok.NoArgsConstructor;
 
 // Anotaciones
 @Entity
-@Table(name = "proveedor")
+@Table(name = "PROVEEDOR")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

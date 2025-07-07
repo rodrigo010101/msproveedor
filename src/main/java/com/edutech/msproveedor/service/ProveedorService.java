@@ -57,15 +57,15 @@ public class ProveedorService {
     }
 
     // findById
-    public Optional<Proveedor> findById(int idproveedor) {
+    public Optional<Proveedor> findById(Integer idproveedor) {
         return proveedorRepository.findById(idproveedor);
     }
 
-    public Proveedor proveedorxId(int idproveedor) {
+    public Proveedor proveedorxId(Integer idproveedor) {
         return proveedorRepository.getReferenceById(idproveedor);
     }
 
-    public boolean update(int idproveedor, Proveedor proveedor) {
+    public boolean update(Integer idproveedor, Proveedor proveedor) {
 
         Proveedor pro = proveedorRepository.findById(idproveedor)
                 .orElseThrow(() -> new RuntimeException("El id proveedor no ha sido encontrado" + idproveedor));

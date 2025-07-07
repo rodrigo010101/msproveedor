@@ -1,6 +1,7 @@
 package com.edutech.msproveedor.service;
 
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyInt;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -29,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @ExtendWith(MockitoExtension.class)
 
-public class ProveedorTest {
+public class ProveedorServiceTest {
 
     @Mock
     private ProveedorRepository proveedorRepository;
@@ -122,7 +123,7 @@ public class ProveedorTest {
                 "paicavi #234",
                 fechaRegistro, TipoRecurso.HUMANO, new ArrayList<>());
 
-        when(proveedorRepository.findById(1)).thenReturn(Optional.of(proveedorExistente));
+        when(proveedorRepository.findById(anyInt())).thenReturn(Optional.of(proveedorExistente));
 
         Optional<Proveedor> resultado = proveedorService.findById(1);
 

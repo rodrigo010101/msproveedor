@@ -14,9 +14,9 @@ import org.springframework.lang.NonNull;;
 public interface ProveedorRepository extends JpaRepository<Proveedor, Integer> {
 
     @NonNull
-    Optional<Proveedor> findById(int idproveedor);
+    Optional<Proveedor> findById(Integer idproveedor);
 
-    Proveedor getReferenceById(int idproveedor);
+    Proveedor getReferenceById(Integer idproveedor);
 
     Optional<Proveedor> findByNombreEmpresa(String nombreEmpresa);
 
